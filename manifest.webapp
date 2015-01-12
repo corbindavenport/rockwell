@@ -1,0 +1,13 @@
+{
+	"name": "Moss",
+	"description": "6502 CPU assembly emulator.",
+	"launch_path": "/index.html",
+	"icons": {
+		"128": "/icon128.png"
+	},
+	"developer": {
+		"name": "Corbin Davenport",
+		"url": "http://www.corbindavenport.com/"
+	},
+	"default_locale": "en"
+}

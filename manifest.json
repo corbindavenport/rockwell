@@ -1,0 +1,13 @@
+{
+	"name": "Moss",
+	"description": "6502 CPU assembly emulator.",
+	"version": "1.0",
+	"minimum_chrome_version": "25",
+	"manifest_version": 2,
+	"app": {
+		"background": {
+			"scripts": ["js/chrome.js"]
+		}
+	},
+	"icons": {"128": "icon128.png" }
+}
