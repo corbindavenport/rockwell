@@ -9,6 +9,7 @@ You should have received a copy of the GNU General Public License along with thi
 body {
 	overflow: hidden;
 }
+
 @media only screen and (min-width: 600px) {
 	.brand-logo {
 		padding-left: 10px !important;
@@ -48,60 +49,116 @@ body {
 		top: 310px;
 		width: 192px !important;
 	}
+	#clearButton {
+		position: absolute;
+		left: -212px; 
+		top: 360px;
+		width: 192px !important;
+	}
 }
+
+.toast {
+	white-space: nowrap !important;
+	overflow: hidden !important;
+}
+
+@media all and (max-width: 600px) {
+	#toast-container {
+		min-width: 100% !important;
+		margin-top: 0px !important;
+		position: absolute !important;
+		left: 0px !important;
+		right: 0px !important;
+		bottom: 0px !important;
+	}
+
+	.toast {
+		min-width: 100% !important;
+		border-radius: 0px !important;
+	}
+}
+
 .nav-wrapper {
-	background: #8bc34a;
+	background: #009688;
 }
-.nav-wrapper li:hover {
-	background: #259b24;
+
+.right li:hover {
+	background: #00796B;
 }
-.mdi-navigation-menu {
-	margin-left: 10px;
+
+.button-collapse {
+	padding-left: 15px;
 }
+
+.modal {
+	overflow-x: hidden !important;
+}
+
 #screen {
 	position: absolute;
-	left: 0px;
-	right: 0px;
-	top: 56px;
+	left: 10px;
+	right: 10px;
+	top: 66px;
 	height: 192px;
 	background: #000000;
 }
+
 #screen table {
 	border-spacing: 0px;
 	width: 100%;
 	min-width: 192px;
 	max-width: 400px;
+	z-index: -1;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
+
 #screen td {
 	width: 6px;
 	height: 6px;
 	padding: 0px;
 }
+
 #editor {
 	position: absolute;
-	left: 20px;
-	right: 20px;
-	top: 260px;
+	left: 10px;
+	right: 10px;
+	top: 270px;
 	bottom: 100px;
 	border-bottom: 0 !important;
 }
+
+#compileButton, #runButton, #resetButton, #clearButton {
+	background: #00796B;
+}
+
 #compileButton {
-	width: 100%;
+	width: 48%;
+	float: left;
 	padding: 0 !important;
 	margin: 0px 0px 10px 0px !important;
 }
+
 #runButton {
+	width: 48%;
+	float: right;
+	padding: 0 !important;
+	margin: 0px 0px 10px 0px !important;
+}
+
+#resetButton {
 	width: 48%;
 	float: left;
 	padding: 0 !important;
 	margin: 0 !important;
 }
-#resetButton {
+
+#clearButton {
 	width: 48%;
 	float: right;
 	padding: 0 !important;
 	margin: 0 !important;
 }
+
 #code {
 	width: 100%;
 	height: 100%;
@@ -113,10 +170,11 @@ body {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
+
 #messages {
-	overflow: auto;
-	max-height: 400px;
+	font-family: "Courier New", Courier, monospace;
 }
+
 td, th {
 	border-radius: 0px !important;
 }

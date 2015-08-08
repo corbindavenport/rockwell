@@ -8,75 +8,140 @@ You should have received a copy of the GNU General Public License along with thi
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/filesaver.min.js"></script>
+	<script type="text/javascript" src="js/blob.min.js"></script>
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-	<link type="text/css" rel="stylesheet" href="css/moss.css"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="css/rockwell.css"  media="screen,projection"/>
+	<title>Rockwell</title>
+	<link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="img/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon-180x180.png">
+	<link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="img/android-chrome-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="img/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="img/manifest.json">
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<meta name="apple-mobile-web-app-title" content="Rockwell">
+	<meta name="application-name" content="Rockwell">
+	<meta name="msapplication-TileColor" content="#009688">
+	<meta name="msapplication-TileImage" content="img/mstile-144x144.png">
+	<meta name="msapplication-config" content="img/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
 </head>
 <body>
 
 <nav>
 	<div class="nav-wrapper">
-		<a href="#" class="brand-logo">Moss</a>
-		<ul id="nav-mobile" class="right side-nav">
-			<li><a class="open-trigger open" href="#open">Open</a></li>
-			<li><a class="save-trigger" href="#save">Save</a></li>
-			<li><a class="examples-trigger" href="#examples">Examples</a></li>
-			<li><a class="output-trigger" href="#output" >Output</a></li>
-			<li><a class="about-trigger" href="#about" >About</a></li>
+		<a href="#!" class="brand-logo">Rockwell</a>
+		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+		<ul class="right hide-on-med-and-down">
+			<li><a href="#" class="open-trigger">Open</a></li>
+			<li><a href="#" class="save-trigger">Save</a></li>
+			<li><a href="#" class="examples-trigger">Examples</a></li>
+			<li><a href="#" class="output-trigger">Output</a></li>
+			<li><a href="#" class="about-trigger">About</a></li>
 		</ul>
-		<a class="button-collapse" href="#" data-activates="nav-mobile"><i class="mdi-navigation-menu"></i></a>
+		<ul class="side-nav" id="mobile-demo">
+			<li><a href="#" class="open-trigger"><i class="mdi-content-undo left"></i>Import program</a></li>
+			<li><a href="#" class="save-trigger"><i class="mdi-content-forward left"></i>Export program</a></li>
+			<li class="divider"></li>
+			<li><a href="#" class="examples-trigger"><i class="mdi-file-folder-open left"></i>Examples</a></li>
+			<li><a href="#" class="output-trigger"><i class="mdi-file-folder left"></i>Output</a></li>
+			<li class="divider"></li>
+			<li><a href="#" class="about-trigger"><i class="mdi-action-info left"></i>About</a></li>
+		</ul>
 	</div>
 </nav>
 
- <!-- Open Dialiog -->
+<div id="warning" class="modal">
+	<div class="modal-content">
+		<h4>Warning</h4>
+		<p>Your device/browser doesn't support several features that Rockwell uses. Please update your device/browser for Rockwell to function normally.</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="waves-effect btn-flat modal-action modal-close">Close</a>
+	</div>
+</div>
+
+<div id="new" class="modal modal-fixed-footer">
+	<div class="modal-content">
+		<h4>What's new</h4>
+		<p>Moss is now <b>Rockwell</b>, with a new interface and lots of new features!</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="waves-effect btn-flat modal-action modal-close">Close</a>
+	</div>
+</div>
+
 <div id="open" class="modal">
-	<h4>Open</h4>
-	<p>Select a program from your device and click Open. Make sure it's in plain text format!</p>
-	<p><input type="file" id="fileToLoad"></p>
-	<a href="#" class="waves-effect btn-flat modal_close">Cancel</a><a href="#" id="load" class="waves-effect btn-flat modal_close">Open</a>
+	<div class="modal-content">
+		<h4>Import</h4>
+		<p>You can import plain text files into Rockwell.</p>
+		<p><input type="file" id="importchooser" /></p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="waves-effect btn-flat modal-action modal-close">Cancel</a>
+	</div>
 </div>
 
- <!-- Save Dialiog -->
 <div id="save" class="modal">
-	<h4>Save</h4>
-	<p>Type the name of the file to be saved as, and tap Save. This will download the program to your device.</p>
-	<p><b>Note:</b> Remember to put an extension (like .asm or .txt) at the end of your file!</p>
-	<p><input type="text" placeholder="file.asm" id="inputFileNameToSaveAs"></input></p>
-	<a href="#" class="waves-effect btn-flat modal_close">Cancel</a><a href="#" id="save" class="waves-effect btn-flat modal_close">Save</a>
+	<div class="modal-content">
+		<h4>Export</h4>
+		<p>Do you want to download the open program to your device?</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="waves-effect btn-flat export-confirm modal-action modal-close">Export</a><a href="#" class="waves-effect btn-flat modal-action modal-close">Cancel</a>
+	</div>
 </div>
 
-<!-- Examples Dialiog -->
-<div id="examples" class="modal">
-	<h4>Examples</h4>
-	<p><b>These are some examples of 6502 assembly programs, submitted to <a href="http://6502asm.com/" target="_blank">6502asm.com</a>. Make sure the editor is empty before trying to open one, it will erase your program!</b></p>
-	<p><b><a id="exampleAlive" href="#">Alive</a></b> - Fun graphics demo.</p>
-	<p><b><a id="exampleBackAndForth" href="#">Back and Forth</a></b> - A dot that moves back and forth.</p>
-	<p><b><a id="exampleAtari" href="#">Atari</a></b> - Renders the Atari logo.</p>
-	<p><b><a id="exampleColors" href="#">Colors</a></b> - A colorful gradient.</p>
-	<p><b><a id="exampleDemoScene" href="#">Demo Scene</a></b> - Demo of the Depth environment, with fun scrolling text.</p>
-	<p><b><a id="exampleDisco" href="#">Disco</a></b> - Animated disco ball!</p>
-	<p><b><a id="exampleCommodore" href="#">Commodore</a></b> - Renders the Commodore logo.</p>
-	<p><b><a id="exampleStarfield" href="#">Starfield 2D</a></b> - Engage warp engines!</p>
-	<p><b><a id="exampleRandom" href="#">Random</a></b> - Generates lots of random colors.</p>
-	<a href="#" class="waves-effect btn-flat modal_close">Close</a>
+<div id="examples" class="modal modal-fixed-footer">
+	<div class="modal-content">
+		<h4>Examples</h4>
+		<p><b><a class="modal-action modal-close" id="exampleAlive" href="#">Alive</a></b> - Fun graphics demo.</p>
+		<p><b><a class="modal-action modal-close" id="exampleBackAndForth" href="#">Back and Forth</a></b> - A dot that moves back and forth.</p>
+		<p><b><a class="modal-action modal-close" id="exampleAtari" href="#">Atari</a></b> - Renders the Atari logo.</p>
+		<p><b><a class="modal-action modal-close" id="exampleColors" href="#">Colors</a></b> - A colorful gradient.</p>
+		<p><b><a class="modal-action modal-close" id="exampleDemoScene" href="#">Demo Scene</a></b> - Demo of the Depth environment, with fun scrolling text.</p>
+		<p><b><a class="modal-action modal-close" id="exampleDisco" href="#">Disco</a></b> - Animated disco ball!</p>
+		<p><b><a class="modal-action modal-close" id="exampleCommodore" href="#">Commodore</a></b> - Renders the Commodore logo.</p>
+		<p><b><a class="modal-action modal-close" id="exampleStarfield" href="#">Starfield 2D</a></b> - Engage warp engines!</p>
+		<p><b><a class="modal-action modal-close" id="exampleRandom" href="#">Random</a></b> - Generates lots of random colors.</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="waves-effect btn-flat modal-action modal-close">Close</a>
+	</div>
 </div>
 
-<!-- Output Dialiog -->
-<div id="output" class="modal">
-	<h4>Compiling Output</h4>
-	<p><b>After compiling a program, check here for the compiler output.</b></p>
-	<p class="messages" id="messages"><i>Nothing here yet!</i></p>
-	<a href="#" class="waves-effect btn-flat modal_close">Close</a>
+<div id="output" class="modal modal-fixed-footer">
+	<div class="modal-content">
+		<h4>Output</h4>
+		<p id="messages">After compiling a program, the compiler output will appear here.</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="waves-effect btn-flat modal-action modal-close">Close</a>
+	</div>
 </div>
 
- <!-- About Dialiog -->
-<div id="about" class="modal">
-	<h4>About</h4>
-	<p>Moss is a <a href="https://en.wikipedia.org/wiki/MOS_Technology_6502" target="_blank">6502 Microprocessor</a> emulator, written in pure HTML/JavaScript. Moss can run assembly code written for the 6502 processor, and was named after the company that developed it, MOS Technology. It has full support for all 6502 assembly except inturrupts (meaning CLI, RTI and SEI instructions are unavailable).</p>
-	<p>Moss is based on the <a href="http://6502asm.com/" target="_blank">6502asm emulator</a>, developed by Stian Søreng. It uses the <a href="http://materializecss.com/" target="_blank">Materialize</a> CSS framework and <a href="http://jquery.com/" target="_blank">JQuery</a>.</p>
-	<a href="#" class="waves-effect btn-flat modal_close">Close</a>
+<div id="about" class="modal modal-fixed-footer">
+	<div class="modal-content">
+		<h4>About</h4>
+		<p>Rockwell, previously named Moss, is a <a href="https://en.wikipedia.org/wiki/MOS_Technology_6502" target="_blank">6502 Microprocessor</a> multi-platform emulator. It can run assembly code written for the 6502 processor, as well as importing/exporting programs.</p>
+		<p>Rockwell is named after the Rockwell R65F11, an enhanced version of the 6502 CPU. It has full support for all 6502 assembly except inturrupts (CLI, RTI and SEI instructions are unavailable).</p>
+		<p>Rockwell is based on the <a href="http://6502asm.com/" target="_blank">6502asm emulator</a>, developed by Stian Søreng. It also uses <a href="http://materializecss.com/" target="_blank">Materialize</a>, <a href="http://jquery.com/" target="_blank">JQuery</a>, <a href="https://github.com/eligrey/FileSaver.js/" target="_blank">FileSaver.js</a>, and <a href="https://github.com/eligrey/Blob.js" target="_blank">Blob.js</a>.</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="waves-effect btn-flat modal-action modal-close">Close</a>
+	</div>
 </div>
 
 <div id="screen" class="screen" align="center">
@@ -86,10 +151,11 @@ You should have received a copy of the GNU General Public License along with thi
 	<a class="waves-effect waves-light btn" href="#" id="compileButton">Compile</a>
 	<a class="waves-effect waves-light btn" href="#" id="runButton">Run</a>
 	<a class="waves-effect waves-light btn" href="#" id="resetButton">Reset</a>
-	<textarea id="code" placeholder="Start typing code here, open an existing program, or open an example. Have fun!"></textarea>
+	<a class="waves-effect waves-light btn" href="#" id="clearButton">Clear</a>
+	<textarea id="code" placeholder="Start typing code here, import an existing program, or open an example"></textarea>
 </div>
 
-<script type="text/javascript" src="js/moss.js"></script>
+<script type="text/javascript" src="js/rockwell.js"></script>
 
 </body>
 </html>

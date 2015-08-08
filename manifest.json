@@ -1,7 +1,7 @@
 {
-	"name": "Moss",
+	"name": "Rockwell",
 	"description": "6502 CPU assembly emulator.",
-	"version": "1.0",
+	"version": "2.0",
 	"minimum_chrome_version": "25",
 	"manifest_version": 2,
 	"app": {
@@ -9,5 +9,5 @@
 			"scripts": ["js/chrome.js"]
 		}
 	},
-	"icons": {"128": "icon128.png" }
+	"icons": {"128": "img/chrome-128x128.png" }
 }

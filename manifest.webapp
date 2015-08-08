@@ -1,13 +1,15 @@
 {
-	"name": "Moss",
+	"name": "Rockwell",
 	"description": "6502 CPU assembly emulator.",
 	"launch_path": "/index.html",
+	"version": "2.0",
 	"icons": {
-		"128": "/icon128.png"
+		"128": "/img/chrome-128x128.png"
 	},
 	"developer": {
 		"name": "Corbin Davenport",
 		"url": "http://www.corbindavenport.com/"
 	},
+	"orientation": [ "portrait-primary" ],
 	"default_locale": "en"
 }
