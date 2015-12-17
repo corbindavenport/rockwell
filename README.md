@@ -22,7 +22,7 @@ __New in Rockwell 2.0:__
 * **Updated UI**: Rockwell adds major improvements to the user interface.
 * **Improved file management**: Rockwell has brand new file management capabilities, rewritten to work better on more devices.
 * **Auto-save**: Rockwell now saves your program to your device automatically, so you can close it and come right back to where you were.
-* **Re-written core**: Large portions of the code have been re-written in JQuery, making the code cleaner and faster.
+* **Re-written core**: Large portions of the code have been re-written in JQuery.
 
 __New in Rockwell 1.0:__
 * Initial release!

@@ -4,10 +4,16 @@
 	"version": "2.0",
 	"minimum_chrome_version": "25",
 	"manifest_version": 2,
+	"permissions": [
+		"unlimitedStorage"
+	],
 	"app": {
-		"background": {
-			"scripts": ["js/chrome.js"]
-		}
-	},
-	"icons": {"128": "img/chrome-128x128.png" }
+    "urls": [
+      "http://corbindavenport.github.io/rockwell/"
+    ],
+    "launch": {
+      "web_url": "http://corbindavenport.github.io/rockwell/"
+    }
+  },
+	"icons": {"128": "icon128.png" }
 }

@@ -14,6 +14,11 @@ $(document).ready(function(){
 		$('#warning').openModal();
 	}
 
+	if (($.browser.mozilla) && ($.browser.version < "32.0") && (navigator.userAgent.indexOf("Mobile") > -1) && (localStorage.getItem("oldalert") != "completed")) {
+		alert("You are running an older version of Firefox OS.\n\nRockwell may work, but it is designed for Firefox OS 2.0 and higher. Please update your device if possible.\n\nThis warning will not be shown again.");
+		localStorage["oldalert"] = "completed";
+	}
+
 	if (localStorage.getItem("rockwell") != "2.0") {
 		//localStorage['rockwell'] = '2.0';
 		$('#new').openModal();
@@ -78,8 +83,6 @@ $(document).ready(function(){
 	// Functionality for editor
 
 	var agent = navigator.userAgent;
-	code.addEventListener("mouseover", expandCode, false);
-	code.addEventListener("mouseout", retractCode, false);
 
 	$("#compileButton").click(function() {
 		compileCode();
@@ -102,36 +105,34 @@ $(document).ready(function(){
 		});
 	});
 
-	function expandCode()
-	{
-		if (window.innerWidth < 600 && (agent.indexOf('Android') != -1 || agent.indexOf('Windows Phone') != -1 || agent.indexOf('iPhone') != -1 || agent.indexOf('iPod') != -1 || agent.indexOf('iPad') != -1 || agent.indexOf('Mobile') != -1))  {
+	$("#code").mouseover(function() {
+		if ((($.browser.mobile) || (navigator.userAgent.indexOf("Mobile") > -1)) && ($(window).width() < 600))  {
 			// Hide buttons and display, freeze emulation
-			document.getElementById("compileButton").style.display = 'none';
-			document.getElementById("runButton").style.display = 'none';
-			document.getElementById("resetButton").style.display = 'none';
-			document.getElementById("clearButton").style.display = 'none';
-			document.getElementById("screen").style.display = 'none';
-			document.getElementById("editor").style.top = '66px';
-			document.getElementById("editor").style.bottom = '20px';
+			$('#compileButton').css('display', 'none');
+			$('#runButton').css('display', 'none');
+			$('#resetButton').css('display', 'none');
+			$('#clearButton').css('display', 'none');
+			$('#screen').css('display', 'none');
+			$('#editor').css('top', '66px');
+			$('#editor').css('bottom', '20px');
 			codeRunning = false;
 			Materialize.toast('Tap on "Rockwell" to go back.', 3000, 'rounded');
 		};
-	}
+	});
 
-	function retractCode()
-	{
-		if (window.innerWidth < 600 && (agent.indexOf('Android') != -1 || agent.indexOf('Windows Phone') != -1 || agent.indexOf('iPhone') != -1 || agent.indexOf('iPod') != -1 || agent.indexOf('iPad') != -1 || agent.indexOf('Mobile') != -1))  {
+	$("#code").mouseout(function() {
+		if (($.browser.mobile) || (navigator.userAgent.indexOf("Mobile") > -1))  {
 			// Show buttons and display, continue emulation
-			document.getElementById("compileButton").style.display = 'block';
-			document.getElementById("runButton").style.display = 'block';
-			document.getElementById("resetButton").style.display = 'block';
-			document.getElementById("clearButton").style.display = 'block';
-			document.getElementById("screen").style.display = 'block';
-			document.getElementById("editor").style.top = '270px';
-			document.getElementById("editor").style.bottom = '100px';
+			$('#compileButton').removeAttr("style");
+			$('#runButton').removeAttr("style");
+			$('#resetButton').removeAttr("style");
+			$('#clearButton').removeAttr("style");
+			$('#screen').removeAttr("style");
+			$('#editor').removeAttr("style");
+			$('#editor').removeAttr("style");
 			codeRunning = true;
 		};
-	}
+	});
 
 	// Fix for sidebar not closing on item select
 

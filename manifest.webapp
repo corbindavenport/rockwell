@@ -10,6 +10,6 @@
 		"name": "Corbin Davenport",
 		"url": "http://www.corbindavenport.com/"
 	},
-	"orientation": [ "portrait-primary" ],
+	"orientation": "portrait",
 	"default_locale": "en"
 }

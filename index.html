@@ -9,10 +9,11 @@ You should have received a copy of the GNU General Public License along with thi
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
-	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/filesaver.min.js"></script>
 	<script type="text/javascript" src="js/blob.min.js"></script>
+	<script type="text/javascript" src="js/jquery.browser.min.js"></script>
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 	<link type="text/css" rel="stylesheet" href="css/rockwell.css"  media="screen,projection"/>
 	<title>Rockwell</title>
@@ -29,34 +30,39 @@ You should have received a copy of the GNU General Public License along with thi
 	<link rel="icon" type="image/png" href="img/android-chrome-192x192.png" sizes="192x192">
 	<link rel="icon" type="image/png" href="img/favicon-96x96.png" sizes="96x96">
 	<link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="img/manifest.json">
+	<link rel="manifest" href="webmanifest.json">
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<meta name="apple-mobile-web-app-title" content="Rockwell">
 	<meta name="application-name" content="Rockwell">
 	<meta name="msapplication-TileColor" content="#009688">
 	<meta name="msapplication-TileImage" content="img/mstile-144x144.png">
-	<meta name="msapplication-config" content="img/browserconfig.xml">
-	<meta name="theme-color" content="#ffffff">
+	<meta name="msapplication-config" content="browserconfig.xml">
+	<meta name="theme-color" content="#00796B">
 </head>
 <body>
+
+<ul id="data" class="dropdown-content">
+	<li><a href="#" class="open-trigger">Import program</a></li>
+	<li><a href="#" class="save-trigger">Export program</a></li>
+	<li class="divider"></li>
+	<li><a href="#" class="output-trigger">Output</a></li>
+</ul>
 
 <nav>
 	<div class="nav-wrapper">
 		<a href="#!" class="brand-logo">Rockwell</a>
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 		<ul class="right hide-on-med-and-down">
-			<li><a href="#" class="open-trigger">Open</a></li>
-			<li><a href="#" class="save-trigger">Save</a></li>
 			<li><a href="#" class="examples-trigger">Examples</a></li>
-			<li><a href="#" class="output-trigger">Output</a></li>
 			<li><a href="#" class="about-trigger">About</a></li>
+			<li><a class="dropdown-button" href="#!" data-activates="data"><i class="mdi-device-sd-storage left"></i> Program<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
 		</ul>
 		<ul class="side-nav" id="mobile-demo">
 			<li><a href="#" class="open-trigger"><i class="mdi-content-undo left"></i>Import program</a></li>
 			<li><a href="#" class="save-trigger"><i class="mdi-content-forward left"></i>Export program</a></li>
 			<li class="divider"></li>
 			<li><a href="#" class="examples-trigger"><i class="mdi-file-folder-open left"></i>Examples</a></li>
-			<li><a href="#" class="output-trigger"><i class="mdi-file-folder left"></i>Output</a></li>
+			<li><a href="#" class="output-trigger"><i class="mdi-action-receipt left"></i>Output</a></li>
 			<li class="divider"></li>
 			<li><a href="#" class="about-trigger"><i class="mdi-action-info left"></i>About</a></li>
 		</ul>
@@ -65,7 +71,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 <div id="warning" class="modal">
 	<div class="modal-content">
-		<h4>Warning</h4>
 		<p>Your device/browser doesn't support several features that Rockwell uses. Please update your device/browser for Rockwell to function normally.</p>
 	</div>
 	<div class="modal-footer">
@@ -77,6 +82,11 @@ You should have received a copy of the GNU General Public License along with thi
 	<div class="modal-content">
 		<h4>What's new</h4>
 		<p>Moss is now <b>Rockwell</b>, with a new interface and lots of new features!</p>
+		<p><u>New name</u>: Rockwell is named after the Rockwell R65F11, an enhanced version of the 6502 CPU. It's much cooler-sounding than Moss.</p>
+		<p><u>Updated UI</u>: Rockwell adds major improvements to the user interface.</p>
+		<p><u>Improved file management</u>: Rockwell has brand new file management capabilities, rewritten to work better on more devices.</p>
+		<p><u>Auto-save</u>: Rockwell now saves your program to your device automatically, so you can close it and come right back to where you were.</p>
+		<p><u>Re-written core</u>: Large portions of the code have been re-written in JQuery.</p>
 	</div>
 	<div class="modal-footer">
 		<a href="#" class="waves-effect btn-flat modal-action modal-close">Close</a>
@@ -85,8 +95,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 <div id="open" class="modal">
 	<div class="modal-content">
-		<h4>Import</h4>
-		<p>You can import plain text files into Rockwell.</p>
+		<p>You can import plain text files into Rockwell's editor.</p>
 		<p><input type="file" id="importchooser" /></p>
 	</div>
 	<div class="modal-footer">
@@ -96,8 +105,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 <div id="save" class="modal">
 	<div class="modal-content">
-		<h4>Export</h4>
-		<p>Do you want to download the open program to your device?</p>
+		<p>This will save the currently open program to your device as a plain text file.</p>
 	</div>
 	<div class="modal-footer">
 		<a href="#" class="waves-effect btn-flat export-confirm modal-action modal-close">Export</a><a href="#" class="waves-effect btn-flat modal-action modal-close">Cancel</a>
@@ -124,7 +132,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 <div id="output" class="modal modal-fixed-footer">
 	<div class="modal-content">
-		<h4>Output</h4>
 		<p id="messages">After compiling a program, the compiler output will appear here.</p>
 	</div>
 	<div class="modal-footer">
@@ -137,7 +144,7 @@ You should have received a copy of the GNU General Public License along with thi
 		<h4>About</h4>
 		<p>Rockwell, previously named Moss, is a <a href="https://en.wikipedia.org/wiki/MOS_Technology_6502" target="_blank">6502 Microprocessor</a> multi-platform emulator. It can run assembly code written for the 6502 processor, as well as importing/exporting programs.</p>
 		<p>Rockwell is named after the Rockwell R65F11, an enhanced version of the 6502 CPU. It has full support for all 6502 assembly except inturrupts (CLI, RTI and SEI instructions are unavailable).</p>
-		<p>Rockwell is based on the <a href="http://6502asm.com/" target="_blank">6502asm emulator</a>, developed by Stian Søreng. It also uses <a href="http://materializecss.com/" target="_blank">Materialize</a>, <a href="http://jquery.com/" target="_blank">JQuery</a>, <a href="https://github.com/eligrey/FileSaver.js/" target="_blank">FileSaver.js</a>, and <a href="https://github.com/eligrey/Blob.js" target="_blank">Blob.js</a>.</p>
+		<p>Rockwell is based on the <a href="http://6502asm.com/" target="_blank">6502asm emulator</a>, developed by Stian Søreng. It uses components from <a href="http://materializecss.com/" target="_blank">Materialize</a>, <a href="http://jquery.com/" target="_blank">jQuery</a>, <a href="https://github.com/gabceb/jquery-browser-plugin" target="_blank">jQuery Browser Plugin</a>, <a href="https://github.com/eligrey/FileSaver.js/" target="_blank">FileSaver.js</a>, and <a href="https://github.com/eligrey/Blob.js" target="_blank">Blob.js</a>.</p>
 	</div>
 	<div class="modal-footer">
 		<a href="#" class="waves-effect btn-flat modal-action modal-close">Close</a>
