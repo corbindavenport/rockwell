@@ -16,6 +16,8 @@ Rockwell is based on the [6502asm emulator](http://6502asm.com), developed by St
 Rockwell is open source under the GPLv3 license. Rockwell is also available on the Chrome Web Store, Google Play Store for Android 4.0+ devices, and the Firefox Marketplace.
 
 ---------------------------------------------------------
+__New in Rockwell 2.0.1:__
+* Bug fixes
 
 __New in Rockwell 2.0:__
 * **New name**: Rockwell is named after the Rockwell R65F11, an enhanced version of the 6502 CPU. It's much cooler-sounding than Moss ;)
