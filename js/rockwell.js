@@ -20,7 +20,7 @@ $(document).ready(function(){
 	}
 
 	if (localStorage.getItem("rockwell") != "2.0") {
-		//localStorage['rockwell'] = '2.0';
+		localStorage['rockwell'] = '2.0';
 		$('#new').openModal();
 	}
 
@@ -389,9 +389,9 @@ $(document).ready(function(){
 
 	/*
 	 *  compileCode()
-	 * 
+	 *
 	 *  "Compiles" the code into a string (global var compiledCode)
-	 * 
+	 *
 	 */
 
 	function compileCode() {
@@ -487,7 +487,7 @@ $(document).ready(function(){
 
 	/*
 	 *  pushLabel() - Push label to array. Return false if label already exists.
-	 * 
+	 *
 	 */
 
 	function pushLabel( name ) {
@@ -679,7 +679,7 @@ $(document).ready(function(){
 
 	/*
 	 * checkImmediate() - Check if param is immediate and push value
-	 * 
+	 *
 	 */
 
 	function checkImmediate( param, opcode ) {
@@ -734,7 +734,7 @@ $(document).ready(function(){
 
 	/*
 	 * checkIndirectX() - Check if param is indirect X and push value
-	 * 
+	 *
 	 */
 
 	function checkIndirectX( param, opcode ) {
@@ -751,7 +751,7 @@ $(document).ready(function(){
 
 	/*
 	 * checkIndirectY() - Check if param is indirect Y and push value
-	 * 
+	 *
 	 */
 
 	function checkIndirectY( param, opcode ) {
@@ -1031,7 +1031,7 @@ $(document).ready(function(){
 
 	function memStoreByte( addr, value ) {
 	  memory[ addr ] = (value & 0xff);
-	  if( (addr >= 0x200) && (addr<=0x5ff) ) 
+	  if( (addr >= 0x200) && (addr<=0x5ff) )
 		display[addr-0x200].background = palette[memory[addr] & 0x0f];
 	}
 
@@ -1815,7 +1815,7 @@ $(document).ready(function(){
 		  regA = memReadByte( addr );
 		  if( regA ) regP &= 0xfd; else regP |= 0x02;
 		  if( regA & 0x80 ) regP |= 0x80; else regP &= 0x7f;
-		  break; 
+		  break;
 		case 0xb4:                          // LDY ZPX
 		  regY = memReadByte( popByte() + regX );
 		  if( regY ) regP &= 0xfd; else regP |= 0x02;

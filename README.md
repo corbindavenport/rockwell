@@ -1,6 +1,6 @@
 Rockwell
 ================
-[![Get it on Chrome Web Store](http://i.imgur.com/gdDBbVh.png)](https://chrome.google.com/webstore/detail/Rockwell/popghicmihgfbepkdgalgnlblklmhcbb) [![Get it on Google Play](http://i.imgur.com/GxU6XWQ.png)](https://play.google.com/store/apps/details?id=com.corbin.Rockwell) [![Get it on Firefox Marketplace](http://i.imgur.com/JooqNu9.png)](https://marketplace.firefox.com/app/Rockwell/)
+[![Get it on Google Play](http://i.imgur.com/GxU6XWQ.png)](https://play.google.com/store/apps/details?id=com.corbin.rockwell) [![Get it on Firefox Marketplace](http://i.imgur.com/JooqNu9.png)](https://marketplace.firefox.com/app/rockwell/)
 ---------------------------------------------------------
 Rockwell, previously named Moss, is a 6502 Microprocessor multi-platform emulator. It can run assembly code written for the 6502 processor, as well as importing/exporting programs. Rockwell is named after the Rockwell R65F11, an enhanced version of the 6502 CPU.
 
@@ -16,6 +16,8 @@ Rockwell is based on the [6502asm emulator](http://6502asm.com), developed by St
 Rockwell is open source under the GPLv3 license. Rockwell is also available on the Chrome Web Store, Google Play Store for Android 4.0+ devices, and the Firefox Marketplace.
 
 ---------------------------------------------------------
+__New in Rockwell 2.0.1:__
+* Bug fixes
 
 __New in Rockwell 2.0:__
 * **New name**: Rockwell is named after the Rockwell R65F11, an enhanced version of the 6502 CPU. It's much cooler-sounding than Moss ;)
